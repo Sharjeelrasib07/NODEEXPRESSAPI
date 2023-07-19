@@ -18,7 +18,9 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   try {
     const schemaName = 'sharjeel'; // Replace 'your_schema_name' with the actual schema name
-    const result = await pool.query(`SELECT * FROM ${schemaName}.style`);
+    const functionName = 'get_data_from_table';
+    const tableName = 'pak_stats';
+    const result = await pool.query(`SELECT  * FROM ${schemaName}.${functionName}()`);
     res.json(result.rows);
   } catch (err) {
     console.error('Error executing query', err.stack);
